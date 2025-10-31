@@ -46,7 +46,7 @@ def product_details(request, category_slug, product_slug):
     return render(request, 'store/product_details.html', context )
 
 def search(request):
-    global products
+    global products, product_count
     if 'keyword' in request.GET:
         keyword = request.GET['keyword']
         if keyword:
