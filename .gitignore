@@ -23,6 +23,7 @@ media
 # C extensions
 *.so
 static/images/
+ .idea/
 
 # Distribution / packaging
 .Python
