@@ -20,9 +20,11 @@ from django.urls import path, include
 from . import views
 from .settings import MEDIA_ROOT
 from django.conf.urls.static import  static
+import admin_honeypot
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    #path('admin/', include('admin_honeypot.urls', namespace='admin_honeypot')),
+    path('secure_login/', admin.site.urls),
     path('', views.home, name='home'),
     path('store/', include('store.urls')),
     path('cart/', include('carts.urls')),

@@ -12,7 +12,10 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 from pathlib import Path
-import os
+from decouple import config
+
+
+
 
 from django.conf.global_settings import STATICFILES_DIRS, STATIC_ROOT, AUTH_USER_MODEL, MEDIA_URL, MEDIA_ROOT, \
     EMAIL_HOST, EMAIL_PORT
@@ -25,10 +28,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-%p4_l^a9)o=9k&y@4!d-c-u0(bzq-(fg4kge!=*=7t6q=fqac!'
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config('DEBUG', cast=bool)
 
 ALLOWED_HOSTS = []
 
@@ -47,6 +50,7 @@ INSTALLED_APPS = [
     'store',
     'carts',
     'orders',
+    #'admin_honeypot',
 ]
 
 MIDDLEWARE = [
@@ -88,12 +92,12 @@ AUTH_USER_MODEL = 'accounts.Account'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'mimi_django',
-        'USER': 'app',
-        'PASSWORD': '7tzp7PURIc9E6sxhArug4mXZ7wFewDwtXte4zyBCP4YVG8DYWrIucusuU6UEYmPX',
-        'HOST': '192.168.1.45',
-        'PORT': '5432'
+        'ENGINE': config('ENGINE'),
+        'NAME': config('NAME'),
+        'USER': config('DATABASE_USER'),
+        'PASSWORD': config('PASSWORD'),
+        'HOST': config('HOST'),
+        'PORT': config('PORT')
     }
 }
 
@@ -150,12 +154,12 @@ MESSAGE_TAGS = {
 }
 
 #SMTP configuration
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.office365.com'
-EMAIL_PORT = 587
-DEFAULT_FROM_EMAIL = "Emana Ewimua <contact@3etechsolution.com>"
-EMAIL_HOST_USER = 'contact@3etechsolution.com'
-EMAIL_HOST_PASSWORD = 'vwbxcbcgpbdjbhcz'
-EMAIL_USE_TLS = True
-DEFAULT_FROM_USER = 'Emana Ewimua'
+EMAIL_BACKEND = config('EMAIL_BACKEND')
+EMAIL_HOST = config('EMAIL_HOST')
+EMAIL_PORT = config('EMAIL_PORT', cast=int)
+DEFAULT_FROM_EMAIL = config('DEFAULT_FROM_EMAIL')
+EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+EMAIL_USE_TLS = config('EMAIL_USE_TLS', cast=bool)
+
 
