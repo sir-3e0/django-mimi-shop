@@ -5,15 +5,19 @@
 
 <section class="section-content padding-y bg">
 	<div class="container">
+   {% include 'includes/header.html' %}
+    <br>
 
 		<!-- ============================ COMPONENT 1 ================================= -->
-		<div class="card">
-	<div class="row no-gutters">
-		<aside class="col-md-6">
+<div class="card mb-3">
+	<div class="row g-0">
+		<div class="col-md-4">
 <article class="gallery-wrap">
-	<div class="img-big-wrap mainImage">
+    <div class="img-big-wrap mainImage">
 	<center><img src="{{ single_product.image.url }}"></center>
 	</div> <!-- img-big-wrap.// -->
+
+
 
 </article> <!-- gallery-wrap .end// -->
       <ul class="thumb">
@@ -25,7 +29,7 @@
           </li>
 
       </ul>
-		</aside>
+		</div>
 		<main class="col-md-6 border-left">
 <form action="{% url 'add_cart' single_product.id %}"  method="POST">
  {% csrf_token %}
@@ -65,7 +69,7 @@
 		<div class="item-option-select">
 			<h6>Select Size</h6>
 			<select name="size" class="form-control" required>
-                <<option value="" disabled selected>Select</option>
+                <option value="" disabled selected>Select</option>
                 {% for i in single_product.variation_set.sizes %}
                 <option value="{{i.variation_value | lower}}">{{i.variation_value | capfirst }}</option>
                 {% endfor %}
@@ -119,7 +123,7 @@
 						Review:
 						<textarea name="review" rows="4" class="form-control"></textarea>
 						<br>
-						<!-- {% if user.is_authenticated %}
+						 {% if user.is_authenticated %}
 							{% if orderproduct %}
 								<input type="submit" value="Submit Review" class="btn btn-primary">
 							{% else %}
@@ -127,16 +131,16 @@
 							{% endif %}
 						{% else %}
 						<p>You must be logged in to post a review. <span><a href="{% url 'login' %}">Login now</a></span></p>
-						{% endif %} -->
-
-						{% if user.is_authenticated %}
-								<input type="submit" value="Submit Review" class="btn btn-primary">
-						{% else %}
-						<p>You must be logged in to post a review. <span><a href="{% url 'login' %}">Login now</a></span></p>
 						{% endif %}
-						<div class="alert alert-danger" role="alert" style="margin-top:10px;">
-  2-Factor Review Submission is disabled for demo purpose.
-</div>
+
+<!--						{% if user.is_authenticated %}-->
+<!--								<input type="submit" value="Submit Review" class="btn btn-primary">-->
+<!--						{% else %}-->
+<!--						<p>You must be logged in to post a review. <span><a href="{% url 'login' %}">Login now</a></span></p>-->
+<!--						{% endif %}-->
+<!--						<div class="alert alert-danger" role="alert" style="margin-top:10px;">-->
+<!--  2-Factor Review Submission is disabled for demo purpose.-->
+<!--</div>-->
 
 					</div>
 {% include 'includes/alerts.html' %}

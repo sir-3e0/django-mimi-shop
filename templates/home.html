@@ -4,15 +4,7 @@
 
 
 <!-- ========================= SECTION MAIN ========================= -->
-<section class="section-intro padding-y-sm">
-<div class="container">
 
-<div class="intro-banner-wrap">
-	<img src="{% static 'images/banners/1.jpg' %}" class="img-fluid rounded">
-</div>
-
-</div> <!-- container //  -->
-</section>
 <!-- ========================= SECTION MAIN END// ========================= -->
 
 <!-- ========================= SECTION  ========================= -->
@@ -20,6 +12,9 @@
 <div class="container">
 
 <header class="section-heading">
+ <!-- Header-->
+{% include 'includes/header.html' %}
+    <br>
 	<a href="{% url 'store' %}" class="btn btn-outline-primary float-right">See all</a>
 	<h3 class="section-title">Popular products</h3>
 </header><!-- sect-heading -->

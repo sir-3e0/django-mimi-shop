@@ -13,12 +13,14 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 from pathlib import Path
 from decouple import config
+import os
 
 
 
 
-from django.conf.global_settings import STATICFILES_DIRS, STATIC_ROOT, AUTH_USER_MODEL, MEDIA_URL, MEDIA_ROOT, \
-    EMAIL_HOST, EMAIL_PORT
+
+#from django.conf.global_settings import STATICFILES_DIRS, STATIC_ROOT, AUTH_USER_MODEL, MEDIA_URL, MEDIA_ROOT, \
+#    EMAIL_HOST, EMAIL_PORT
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -33,7 +35,7 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', cast=bool)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -137,12 +139,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_URL = 'static/'
-#STATIC_ROOT = BASE_DIR /'static'
+STAIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATICFILES_DIRS = ['static/']
 
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR /'media'
+MEDIA_URL = 'media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
@@ -161,5 +163,8 @@ DEFAULT_FROM_EMAIL = config('DEFAULT_FROM_EMAIL')
 EMAIL_HOST_USER = config('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
 EMAIL_USE_TLS = config('EMAIL_USE_TLS', cast=bool)
+
+
+DEFAULT_AUTO_FIELD='django.db.models.AutoField'
 
 

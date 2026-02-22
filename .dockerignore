@@ -1,0 +1,10 @@
+.env
+.venv/
+Dockerfile
+.DS_Store
+.ebextensions
+.elasticbeanstalk
+.idea
+db.sqlite3
+.gitignore
+
